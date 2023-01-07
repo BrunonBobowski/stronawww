@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <script>
+      // Tworzymy tablicę z pytaniami
+      const questionsOriginal = [
+
+          "Opisz szlak pentozofosforanowy oraz jego znaczenie",
+          "Opisz substraty zużywane w glukoneogenezie",
+          "Opisz cykl cori",
+          "Opisz syntezę kwasów tłuszczowych",
+          "Opisz glikogen, jego budowę oraz znaczenie)",
+          "Napisz reakcje w której powstaje bursztynylo-S-CoA.",
+          "Opisz glukoneogenezę, jej przebieg i znaczenie.",
+          "Opisz metaboliczne losy pirogronianu i oksydacyjną dekarboksylacje pirogronianu.",
+          "Opisz utlenianie kwasów tłuszczowych.",
+          "Opisz syntezę i rozpad glikogenu.",
+          "Napisz równanie reakcji, w której powstaje fosfoenolopirogronian",
+          "Opisz cykl Krebsa",
+          "Opisz metabolizm fruktozy i galaktozy",
+          "Opisz najobficiej występujące lipidy w organizmie",
+          "Napisz reakcję glukoneogenezy, w której powstaje szczawiooctan",
+          "Opisz ketogenezę (jej przyczyny)",
+          "Opisz pochodne cukrów",
+          "Opisz fazy szlaku pentozofosforanowego",
+          "Opisz trawienie tłuszczów pokarmowych i rozkład triacylogriceroli w komórce",
+          "Opisz disacharydy."
+      ];
+
+      // Kopiujemy pytania z tablicy questionsOriginal do tablicy questions
+      let questions = [...questionsOriginal];
+
+      function generateQuestions() {
+        // Tworzymy pustą tablicę, do której będziemy dodawać wylosowane pytania
+        const selectedQuestions = [];
+
+        // Losujemy 5 pytań
+        for (let i = 0; i < 5; i++) {
+          // Losujemy indeks pytania z tablicy questions
+          const randomIndex = Math.floor(Math.random() * questions.length);
+
+          // Dodajemy wylosowane pytanie do tablicy selectedQuestions
+          selectedQuestions.push(questions[randomIndex]);
+
+          // Usuwamy wylosowane pytanie z tablicy questions, aby nie wylosować go ponownie
+          questions.splice(randomIndex, 1);
+        }
+
+        // Jeśli tablica z pytaniami jest pusta, to kopiujemy do niej wszystkie pytania z tablicy questionsOriginal
+        if (questions.length === 0) {
+          questions = [...questionsOriginal];
+        }
+
+        // Tworzymy element HTML z wylosowanymi pytaniami
+        const questionsElement = document.createElement("div");
+        questionsElement.innerHTML = selectedQuestions.join("<br>");
+
+        // Wstawiamy wylosowane pytania do elementu o id "questions"
+        document.getElementById("questions").innerHTML = "";
+        document.getElementById("questions").appendChild(questionsElement);
+      }
+    </script>
+<head>
+    <title>Generator kolokwiów</title>
+</head>
+<body style="background-color: #202E3B;">
+    <br>
+    <br>
+    <header style="font-size: large; text-align: center; color: white; font-family: monospace; font-weight: bold;">
+        Generator II kolokwium z biochemii
+    </header>
+    <br>
+    <div style="text-align: center; color: white; font-family: monospace;">
+        <button style="color: black; font-family: monospace; background-color: white;" onclick="generateQuestions()">Wygeneruj pytania</button>
+        <br>
+        <br>
+        <br>
+        <style>
+            .text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+        <div class="container">
+            <div class="text">Tekst na obrazku</div>
+        </div>
+        <div style="text-align: center; position: relative;">
+            <img src="kartka.jpg" alt="Opis obrazka" width="600" height="200">
+            <div style="color: black; font-family: monospace; position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);">
+                <br>
+                <br>
+                <strong>Przykładowe kolokwium z biochemii:</strong>
+                <br>
+                <br>
+                <div id="questions"></div>
+            </div>
+          </div>
+
+    </div>
+    <br>
+    <footer style="text-align: center; color: white; font-family: monospace;">
+        lekdent 2022/2023
+    </footer>
+</body>
+</html>
